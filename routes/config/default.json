@@ -1,0 +1,80 @@
+﻿{
+    "appUrls": {
+        "qrUrl": "/QR/Report?studyInstanceId="
+    },
+    "cronFrequency": "*/30 * * * * *",
+    "whichLanguage": "english",
+    "emailDetails": {
+        "en-us": {
+            "templateId": "643d1317-330d-4869-98b7-9622e2022b9f",
+            "emailSubject": "Your comprehensive eye screening report"
+        },
+        "pt-br": {
+            "templateId": "eb41351c-7343-47e6-b2cf-526ae45a168e",
+            "emailSubject": "Seu relatório abrangente de triagem ocular"
+        },
+        "es-mx": {
+            "templateId": "19bd4d5b-7db5-464b-9348-ba7c83231399",
+            "emailSubject": "Su informe de prueba de diagnóstico ocular completo"
+        }
+    },
+    "credentials": {
+        "azure": {
+            "accountName": "dcpkgn2014",
+            "accountKey": "Jk1noVG8EPe/058Suz0SDtUei5Ova8Xe6w+CxVRGmHaefk5JHv6fE3SuXt4rjTRhms3K2PKMZlSjZS/raxKlIg==",
+            "containerToSaveReport": "dcppdfcontainer"
+        },
+        "sendgrid": {
+            "sg_username": "azure_2a2eb3974dd829b62f539e2b85910227@azure.com",
+            "sg_password": "Motif@123",
+            "from_address": "eye.screening@zeiss.com"
+        },
+        "google": {
+            "shortUrl": "AIzaSyD1lnAc8OISuJVnjUJ8fB34_36cnUq3YwY"
+        }
+    },
+    "questions_configuration_query": {
+        "getQuestionMaster": "select * from questionsmaster limit 2;",
+
+        "findReport": "SELECT * from reports where DCPStudyId=?;",
+
+        "insertReport": "Insert into reports (DCPStudyId, URL, CreatedBy, UpdatedBy) VALUES (?,?,?,?)",
+
+        "updateReport": "Update reports SET DCPStudyId=?, URL=?, CreatedBy=?, UpdatedBy=? WHERE DCPStudyId = ",
+
+        "updateStudyToDownloaded": "UPDATE studies SET Status = 'Downloaded' WHERE Id=?;",
+
+        "updateStudyToCompleted": "UPDATE studies SET Status = 'Completed' WHERE Id=?;",
+
+        "findReportCron": "SELECT * from report_cron where isReportSaved=? AND tryReportAgain=? LIMIT 10;",
+
+        "updateReportCron": "UPDATE report_cron SET isReportSaved = true WHERE studyId=?;",
+
+        "updateReportCronAndEmail": "UPDATE report_cron SET isReportSaved = true, isEmailSent = true, reportFailureReason = ''  WHERE studyId=?;",
+
+        "getGraderFooter": "SELECT * from reporttemplates where ReportTemplateTypeID = 4 AND SiteID =? AND GraderId =?;"
+    },
+    "dateFormat": {
+        "format1": "ddd, DD MMM YYYY, hh:mm A"
+    },
+    "timezones": {
+        "timezone1": "Eastern Standard Time",
+        "timezone1city": "America/New_York",
+        "timezone2": "Central Standard Time",
+        "timezone2city": "America/Chicago",
+        "timezone3": "Mountain Standard Time",
+        "timezone3city": "America/Bogota",
+        "timezone4": "Pacific Standard Time",
+        "timezone4city": "Canada/Yukon",
+        "timezone5": "India Standard Time",
+        "timezone5city": "Asia/Kolkata",
+        "timezone6": "China Standard Time",
+        "timezone6city": "Asia/Macau",
+        "timezone7": "Central European Standard Time",
+        "timezone7city": "Europe/Berlin"
+    },
+    "errorMsgs": {
+        "connectionNonFound": "Code: 100, Error while getting a connection to database",
+        "firstTime": "This ERROR is seen for the 1st time"
+    }
+}

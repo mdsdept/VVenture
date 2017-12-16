@@ -1,0 +1,12 @@
+{
+    "check": "check",
+    "check2": { "check3": "check3" },
+    "db": [{
+        "connectionLimit": 100,
+        "host": "localhost",
+        "user": "root",
+        "password": "Motif@123",
+        "database": "safavv11"
+    }]
+
+}
